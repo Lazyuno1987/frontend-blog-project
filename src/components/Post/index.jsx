@@ -11,10 +11,7 @@ import { UserInfo } from '../UserInfo';
 import { PostSkeleton } from './Skeleton';
 import { useDispatch } from 'react-redux';
 import { fetchRemovePost } from '../../redux/slices/posts';
-import * as dotenv from "dotenv";
 
-dotenv.config();
-const {REACT_API_API_URL}=process.env
 export const Post = ({
   _id,
   title,
@@ -61,7 +58,7 @@ const dispatch = useDispatch()
       {imageUrl && (
         <img
           className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
-          src={`${REACT_API_API_URL}${imageUrl}`}
+          src={`https://backend-blog-project-laziun.herokuapp.com/${imageUrl}`}
           alt={title}
         />
       )}

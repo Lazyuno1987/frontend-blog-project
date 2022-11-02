@@ -9,10 +9,7 @@ import { isAuthSelector } from "../../redux/slices/auth";
 import styles from "./AddPost.module.scss";
 import { useNavigate, Navigate, useParams } from "react-router-dom";
 import axios from "../../axios";
-import * as dotenv from "dotenv";
 
-dotenv.config();
-const {REACT_API_API_URL}=process.env
 
 export const AddPost = () => {
   const { id } = useParams();
@@ -136,7 +133,7 @@ export const AddPost = () => {
           </Button>
           <img
             className={styles.image}
-            src={`${REACT_API_API_URL}${imageUrl}`}
+            src={`https://backend-blog-project-laziun.herokuapp.com/${imageUrl}`}
             alt="Uploaded"
           />
         </>
