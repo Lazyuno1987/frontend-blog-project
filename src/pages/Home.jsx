@@ -15,7 +15,10 @@ export const Home = () => {
   const  data = useSelector((state) => state.auth.data)
   const dispatch = useDispatch();
    const { posts, tags } = useSelector((state) => state.posts)
-
+  console.log(posts.items)
+  console.log(data?.userData)
+  
+  
 
 const isPostsLoading = posts.status ==="loading"
 const isTagsLoading = tags.status ==="loading"
@@ -44,7 +47,7 @@ const isTagsLoading = tags.status ==="loading"
               viewsCount={obj.viewsCount}
               commentsCount={3}
                 tags={obj.tags}
-            isEditable={data?.userData._id===obj.user._id}
+            isEditable={data?.userData?._id===obj?.user?._id}
             />
           ))}
         </Grid>
