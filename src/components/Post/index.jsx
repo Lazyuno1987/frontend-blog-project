@@ -26,7 +26,7 @@ export const Post = ({
   isLoading,
   isEditable,
 }) => {
-  console.log(isEditable)
+
 const dispatch = useDispatch()
   if (isLoading) {
     return <PostSkeleton />;

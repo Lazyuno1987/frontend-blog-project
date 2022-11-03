@@ -6,7 +6,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import {useForm} from "react-hook-form"
 import styles from "./Login.module.scss";
-import {fetchUserData, isAuthSelector} from '../../redux/slices/auth'
+import {fetchAuthMe, fetchUserData, isAuthSelector} from '../../redux/slices/auth'
 import { Navigate } from "react-router-dom";
 
 export const Login = () => {
@@ -14,8 +14,8 @@ export const Login = () => {
 const isAuth = useSelector(isAuthSelector)
   const {register, handleSubmit, setError, formState:{errors, isValid} } = useForm({
     defaultValues: {
-      email: 'olesiaK@mail.com',
-    password:'11111229911'
+      email: '',
+    password:''
     },
     mode: 'onChange'
     
@@ -29,6 +29,7 @@ const isAuth = useSelector(isAuthSelector)
     if ("token" in data.payload) {
       window.localStorage.setItem("token", data.payload.token)
     }
+    dispatch(fetchAuthMe())
   }
 
 

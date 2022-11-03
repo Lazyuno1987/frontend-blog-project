@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import Container from '@mui/material/Container';
 import { useDispatch, useSelector } from 'react-redux';
-import { isAuthSelector, logout } from '../../redux/slices/auth';
+import { fetchAuthMe, isAuthSelector, logout } from '../../redux/slices/auth';
 
 export const Header = () => {
   const isAuth = useSelector(isAuthSelector);
@@ -14,6 +14,7 @@ const dispatch = useDispatch()
   const onClickLogout = () => { 
     if(window.confirm("Ви точно хочете вийти?"))
       dispatch(logout())
+    dispatch(fetchAuthMe())
     window.localStorage.removeItem("token")
   };
 

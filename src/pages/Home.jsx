@@ -14,9 +14,21 @@ export const Home = () => {
    
   const  data = useSelector((state) => state.auth.data)
   const dispatch = useDispatch();
-   const { posts, tags } = useSelector((state) => state.posts)
-  console.log(posts.items)
-  console.log(data?.userData)
+  let newPosts = [];
+  const { posts, tags } = useSelector((state) => state.posts)
+  
+ function reverseArr(){
+    posts?.items.map(post => {
+      newPosts.unshift(post)
+      return newPosts
+    }
+   
+     )
+ }
+  reverseArr()
+   
+
+
   
   
 
@@ -30,12 +42,12 @@ const isTagsLoading = tags.status ==="loading"
   return (
     <>
       <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
-        <Tab label="Нові" />
+        <Tab label="Нові"/>
         <Tab label="Популярні" />
       </Tabs>
       <Grid container spacing={4}>
         <Grid xs={8} item>
-          {(isPostsLoading  ? [...Array(5)] : posts.items).map((obj, index) => isPostsLoading ? (<Post key={index} isLoading={true}/>) :
+          {(isPostsLoading  ? [...Array(5)] : newPosts).map((obj, index) => isPostsLoading ? (<Post key={index} isLoading={true}/>) :
           (
               <Post
                 key={index} 

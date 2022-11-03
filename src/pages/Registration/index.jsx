@@ -8,15 +8,15 @@ import {useForm} from "react-hook-form"
 import styles from './Login.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import {fetchRegister, isAuthSelector} from '../../redux/slices/auth'
+import {fetchAuthMe, fetchRegister, isAuthSelector} from '../../redux/slices/auth'
 export const Registration = () => {
    const dispatch = useDispatch();
 const isAuth = useSelector(isAuthSelector)
   const {register, handleSubmit,  formState:{errors, isValid} } = useForm({
     defaultValues: {
-      name:"Oksana",
-      email: 'oksana@mail.com',
-      password:'111111'
+      name:"",
+      email: '',
+      password:''
     },
     mode: 'onChange'
     
@@ -29,6 +29,7 @@ const isAuth = useSelector(isAuthSelector)
     if ("token" in data.payload) {
       window.localStorage.setItem("token", data.payload.token)
     }
+     dispatch(fetchAuthMe())
   }
 
 
