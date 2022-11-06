@@ -20,6 +20,11 @@ export const fetchRemovePost = createAsyncThunk("posts/fetchRemovePost", async (
     
 })
 
+export const fetchComments = createAsyncThunk("posts/fetchComments", async (id) => {
+    const { data } = await axios.get(`/comment/${id}`)
+    return data
+})
+
 
 const initialState = {
     posts: {
@@ -70,6 +75,20 @@ const postsSlice = createSlice({
             state.posts.items = state.posts.items.filter(post=>post._id!==action.meta.arg)
            
         },
+         [fetchComments.pending]: (state) => {
+            state.comments.items = [];
+            state.comments.status = 'loading'
+        },
+        [fetchComments.fulfilled]: (state, action) => {
+            state.comments.status = 'loaded';
+            state.comments.items = action.payload;
+        },
+          [fetchComments.rejected]: (state) => {
+            state.comments.status = 'error';
+            state.comments.items = [];
+        },
+          
+           
         // [fetchRemovePost.fulfilled]: (state, action) => {
         //     state.posts.status = 'loaded';
         //     state.posts.items = action.payload;

@@ -12,18 +12,17 @@ import { TagsBlock } from "../../components/TagsBlock";
 import { CommentsBlock } from "../../components/CommentsBlock";
 
 
-export const New = () => {
-  const[comments, setComments]=useState([])
-  const data = useSelector((state) => state.auth.data);
-  const dispatch = useDispatch();
-  const { posts, tags } = useSelector((state) => state.posts);
-  const isPostsLoading = posts.status === "loading";
-  const isTagsLoading = tags.status === "loading";
- 
+export const Popular = () => {
+    const[comments, setComments]=useState([])
+    const dispatch = useDispatch();
+    const { posts, tags } = useSelector((state) => state.posts);
+    const isPostsLoading = posts.status === "loading";
+    const isTagsLoading = tags.status === "loading";
+    const data = useSelector((state) => state.auth.data);
   useEffect(() => {
-    dispatch(fetchTags());
-    dispatch(fetchPosts());
-  axios.get(`/comment`)
+      dispatch(fetchTags());
+     dispatch(fetchPosts())  
+      axios.get(`/comment`)
        .then((res) => {
         setComments(res.data)
        
@@ -32,33 +31,34 @@ export const New = () => {
        
     alert("Є помилка при загрузці коментарів")
       });
-   
-  }, []);
-
-
+    },[])
    
 
-  let newPosts =[]
+   let newPost = []
+   
+    
 
-  const  reverseArr=()=> {
-    posts?.items.map((post) => {
-      newPosts.unshift(post);
-      return newPosts;
-    })}
- reverseArr()
+     const popularPosts = () => {
+   if (posts) {
+  newPost = [...posts.items].sort((a, b) => b.viewsCount-a.viewsCount)
+    }
+return newPost
+  }
+    popularPosts()
      
     function commentsCountLength(objId) {
     const countCom = comments.filter(el => el.post._id===objId)
     
     return countCom.length
   }
-
- 
+  
+   
     return (
-    <>
+    
+  <>
       <Grid container spacing={4}>
         <Grid xs={8} item>
-          {(isPostsLoading  ? [...Array(5)] : newPosts).map((obj, index) => isPostsLoading ? (<Post key={index} isLoading={true}/>) :
+          {(isPostsLoading  ? [...Array(5)] : newPost).map((obj, index) => isPostsLoading ? (<Post key={index} isLoading={true}/>) :
           (
               <Post
                 key={index} 
@@ -70,7 +70,7 @@ export const New = () => {
               viewsCount={obj.viewsCount}
               commentsCount={commentsCountLength(obj._id)}
                 tags={obj.tags}
-                 isEditable={data?.userData?._id === obj?.user?._id}
+                  isEditable={data?.userData?._id === obj?.user?._id}
             />
           ))}
                 </Grid>

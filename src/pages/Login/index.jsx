@@ -12,7 +12,7 @@ import { Navigate } from "react-router-dom";
 export const Login = () => {
   const dispatch = useDispatch();
 const isAuth = useSelector(isAuthSelector)
-  const {register, handleSubmit, setError, formState:{errors, isValid} } = useForm({
+  const {register, handleSubmit,  formState:{errors, isValid} } = useForm({
     defaultValues: {
       email: '',
     password:''
@@ -36,7 +36,7 @@ const isAuth = useSelector(isAuthSelector)
   if (isAuth) {
     return <Navigate to = '/'/>
   }
-  console.log(isAuth)
+ 
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">

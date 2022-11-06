@@ -1,91 +1,98 @@
-import React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Grid from '@mui/material/Grid';
-import { useEffect } from 'react';
-import { Post } from '../components/Post';
-import { TagsBlock } from '../components/TagsBlock';
-import { CommentsBlock } from '../components/CommentsBlock';
+import React from "react";
+import {Outlet} from 'react-router-dom'
+// import Tabs from "@mui/material/Tabs";
+import { Button } from "@mui/material";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts, fetchTags } from '../redux/slices/posts';
- 
+// import Grid from "@mui/material/Grid";
+// import { useEffect } from "react";
+// import { Post } from "../components/Post";
+// import { TagsBlock } from "../components/TagsBlock";
+// import { CommentsBlock } from "../components/CommentsBlock";
+// import axios from '../axios.js'
+// import { useDispatch, useSelector } from "react-redux";
+// import {  fetchPosts, fetchTags } from "../redux/slices/posts";
+// import { useState } from "react";
+
 export const Home = () => {
-   
-  const  data = useSelector((state) => state.auth.data)
-  const dispatch = useDispatch();
-  let newPosts = [];
-  const { posts, tags } = useSelector((state) => state.posts)
-  
- function reverseArr(){
-    posts?.items.map(post => {
-      newPosts.unshift(post)
-      return newPosts
-    }
-   
-     )
- }
-  reverseArr()
-   
-
-
+  // const[comments, setComments]=useState([])
+  // const data = useSelector((state) => state.auth.data);
+  // const dispatch = useDispatch();
+  // const { posts, tags } = useSelector((state) => state.posts);
+  // const isPostsLoading = posts.status === "loading";
+  // const isTagsLoading = tags.status === "loading";
   
   
+  // useEffect(() => {
+  //   dispatch(fetchTags());
+  //   dispatch(fetchPosts());
+  // axios.get(`/comment`)
+  //      .then((res) => {
+  //       setComments(res.data)
+       
+  //     })
+  //     .catch((err) => {
+       
+  //   alert("Є помилка при загрузці коментарів")
+  //     });
+   
+  // }, []);
 
-const isPostsLoading = posts.status ==="loading"
-const isTagsLoading = tags.status ==="loading"
-  useEffect(() => {
-   dispatch(fetchTags())
-    dispatch(fetchPosts())
-},[])
+  // let newPosts =[]
+
+//   const  reverseArr=()=> {
+//     posts?.items.map((post) => {
+//       newPosts.unshift(post);
+//       return newPosts;
+//     })}
+//  reverseArr()
+
+
+
+//   function commentsCountLength(objId) {
+//     const countCom = comments.filter(el => el.post._id===objId)
+    
+//     return countCom.length
+//   }
 
   return (
     <>
-      <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
-        <Tab label="Нові"/>
-        <Tab label="Популярні" />
-      </Tabs>
-      <Grid container spacing={4}>
-        <Grid xs={8} item>
-          {(isPostsLoading  ? [...Array(5)] : newPosts).map((obj, index) => isPostsLoading ? (<Post key={index} isLoading={true}/>) :
-          (
-              <Post
-                key={index} 
-              _id={obj._id}
+  
+      <div
+        style={{ marginBottom: 15 }}
+      > 
+        <Button href="/" style={{ marginRight:15 }} variant="contained">Нові</Button>
+        <Button  href="/popular" variant="contained">Популярні</Button>
+        </div>
+      {/* <Grid container spacing={4}> */}
+        {/* <Grid xs={8} item>
+          {(isPostsLoading ? [...Array(5)] : newPosts).map((obj, index) =>
+            isPostsLoading ? (
+              <Post key={index} isLoading={true} />
+            ) : (
+                <Post
+                  
+                key={index}
+                _id={obj._id}
                 title={obj.title}
-              imageUrl={obj.imageUrl}
-              user={obj.user}
-              createdAt={obj.createdAt}
-              viewsCount={obj.viewsCount}
-              commentsCount={3}
+                imageUrl={obj.imageUrl}
+                user={obj.user}
+                createdAt={obj.createdAt}
+                viewsCount={obj.viewsCount}
+                  commentsCount={commentsCountLength(obj._id)}
                 tags={obj.tags}
-            isEditable={data?.userData?._id===obj?.user?._id}
-            />
-          ))}
-        </Grid>
-        <Grid xs={4} item>
-          <TagsBlock  items={tags.items} isLoading={isTagsLoading} />
-          <CommentsBlock
-            items={[
-              {
-                user: {
-                  fullName: 'Вася Пупкін',
-                  avatarUrl: 'https://mui.com/static/images/avatar/1.jpg',
-                },
-                text: 'Це тестовий коментар',
-              },
-              {
-                user: {
-                  fullName: 'Иван Иванов',
-                  avatarUrl: 'https://mui.com/static/images/avatar/2.jpg',
-                },
-                text: 'When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top',
-              },
-            ]}
+                isEditable={data?.userData?._id === obj?.user?._id}
+              />
+            )
+          )}
+        </Grid> */}
+        {/* <Grid xs={4} item>
+          <TagsBlock items={tags.items} isLoading={isTagsLoading} />
+          <CommentsBlock items={comments}
             isLoading={false}
           />
         </Grid>
-      </Grid>
+      </Grid> */}
+      <Outlet/>
     </>
   );
 };

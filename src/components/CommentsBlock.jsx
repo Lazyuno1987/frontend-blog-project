@@ -10,17 +10,25 @@ import List from "@mui/material/List";
 import Skeleton from "@mui/material/Skeleton";
 
 export const CommentsBlock = ({ items, children, isLoading = true }) => {
+
+   let newItems =[]
+   const  reverseArr=()=> {
+    items?.map((post) => {
+      newItems.unshift(post);
+      return newItems;
+    })}
+ reverseArr()
   return (
-    <SideBlock title="Комментарии">
+    <SideBlock title="Коментарі">
       <List>
-        {(isLoading ? [...Array(5)] : items).map((obj, index) => (
+        {(isLoading ? [...Array(5)] : newItems).map((obj, index) => (
           <React.Fragment key={index}>
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
                 {isLoading ? (
                   <Skeleton variant="circular" width={40} height={40} />
                 ) : (
-                  <Avatar alt={obj.user.fullName} src={obj.user.avatarUrl} />
+                  <Avatar alt={obj.user.name} src={obj.user.avatarUrl} />
                 )}
               </ListItemAvatar>
               {isLoading ? (
@@ -30,8 +38,8 @@ export const CommentsBlock = ({ items, children, isLoading = true }) => {
                 </div>
               ) : (
                 <ListItemText
-                  primary={obj.user.fullName}
-                  secondary={obj.text}
+                  primary={obj.user.name}
+                  secondary={obj.comment}
                 />
               )}
             </ListItem>

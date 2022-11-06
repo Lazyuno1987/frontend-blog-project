@@ -4,7 +4,9 @@ import axios from "axios";
 // dotenv.config();
 // const {REACT_API_API_URL}=process.env
 const instance = axios.create({
-    baseURL:"https://backend-blog-project-laziun.herokuapp.com/"
+      baseURL:"https://backend-blog-project-laziun.herokuapp.com/"
+     //baseURL:'http://localhost:4444/'
+    
 })
 
 instance.interceptors.request.use((config) => {

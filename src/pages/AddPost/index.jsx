@@ -22,16 +22,16 @@ export const AddPost = () => {
   const [tags, setTags] = React.useState("");
   const [imageUrl, setImageUrl] = React.useState("");
   const navigate = useNavigate();
-  const isEditing=Boolean(id)
-
+  const isEditing = Boolean(id)
+console.log(Boolean(id))
   const handleChangeFile = async (event) => {
     try {
       const formData = new FormData();
       const file = event.target.files[0];
       formData.append("image", file);
 
-      const { data } = await axios.post("/upload", formData);
-
+      const {data } = await axios.post("/upload", formData);
+ console.log(data)
       setImageUrl(data.url);
     } catch (error) {
       console.warn(error);
@@ -50,17 +50,17 @@ export const AddPost = () => {
   const onSubmit = async () => {
     try {
       setIsLoading(true);
-      //  setTags()
-
       const fields = {
         title,
         imageUrl,
         tags,
         text,
       };
+    
       const { data } = isEditing ? await axios.patch(`/posts/${id}`, fields) : await axios.post("/posts", fields);
-
-      const idt = isEditing ? id: data._id;
+ const idt = isEditing ? id : data._id;
+    
+      
       navigate(`/posts/${idt}`);
     } catch (error) {
       console.warn(error);
@@ -73,10 +73,10 @@ export const AddPost = () => {
       axios
         .get(`/posts/${id}`)
         .then(({ data }) => {
-         
+        
           setTitle(data.title);
           setText(data.text);
-          setTags(data.tags.join(","));
+          setTags(data.tags);
           setImageUrl(data.imageUrl);
 
 
@@ -86,7 +86,7 @@ export const AddPost = () => {
           alert("Помилка при отриманні статті");
         });
     }
-  },[]);
+  },[id]);
 
   const options = React.useMemo(
     () => ({
