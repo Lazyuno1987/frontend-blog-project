@@ -1,5 +1,4 @@
 import React from "react"
-import { useParams } from "react-router-dom"
 import { Grid } from "@mui/material"
 import { Post } from "../../components"
 import { useDispatch, useSelector } from "react-redux"
@@ -12,7 +11,7 @@ import { TagsBlock } from "../../components/TagsBlock";
 import { CommentsBlock } from "../../components/CommentsBlock";
 
 
-export const New = () => {
+export const NewPost = () => {
   const[comments, setComments]=useState([])
   const data = useSelector((state) => state.auth.data);
   const dispatch = useDispatch();
@@ -33,7 +32,7 @@ export const New = () => {
     alert("Є помилка при загрузці коментарів")
       });
    
-  }, []);
+  }, [dispatch]);
 
 
    

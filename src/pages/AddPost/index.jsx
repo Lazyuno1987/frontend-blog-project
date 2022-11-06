@@ -23,7 +23,7 @@ export const AddPost = () => {
   const [imageUrl, setImageUrl] = React.useState("");
   const navigate = useNavigate();
   const isEditing = Boolean(id)
-console.log(Boolean(id))
+console.log(isLoading)
   const handleChangeFile = async (event) => {
     try {
       const formData = new FormData();
@@ -31,7 +31,7 @@ console.log(Boolean(id))
       formData.append("image", file);
 
       const {data } = await axios.post("/upload", formData);
- console.log(data)
+
       setImageUrl(data.url);
     } catch (error) {
       console.warn(error);

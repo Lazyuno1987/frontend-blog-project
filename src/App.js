@@ -8,7 +8,7 @@ import { Home, FullPost, Registration, AddPost, Login } from "./pages";
 import { TagsPage } from "./pages";
 import { Popular } from "./pages/Popular/index.jsx";
 import { fetchAuthMe } from "./redux/slices/auth";
-import { New } from "./pages/New/New.jsx";
+import { NewPost } from "./pages/NewPost/NewPost";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ function App() {
   
   React.useEffect(() => {
     dispatch(fetchAuthMe())
-  }, [])
+  }, [dispatch])
   
   
   return (
@@ -25,7 +25,7 @@ function App() {
       <Container maxWidth="lg">
         <Routes>
           <Route path="/" element={<Home />}>
-          <Route index element={<New />} />
+          <Route index element={<NewPost />} />
           <Route  path="/popular" element={<Popular />} />
           </Route>
           <Route path='/posts/:id' element={<FullPost />} />

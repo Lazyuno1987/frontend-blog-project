@@ -12,7 +12,7 @@ export const TagsPage = () => {
   const dispatch = useDispatch();
   const { name } = useParams()
   const [comments, setComments] = useState()
-  const { posts, tags } = useSelector((state) => state.posts)
+  const { posts } = useSelector((state) => state.posts)
  
  
   useEffect(() => {
@@ -26,7 +26,7 @@ export const TagsPage = () => {
        
     alert("Є помилка при загрузці коментарів")
       });
-    },[])
+    },[dispatch])
    
 
    let newPosts = []
