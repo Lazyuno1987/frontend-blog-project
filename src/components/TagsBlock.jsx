@@ -11,40 +11,35 @@ import Skeleton from "@mui/material/Skeleton";
 import { SideBlock } from "./SideBlock";
 
 export const TagsBlock = ({ items, isLoading }) => {
-
   let unicTags = [];
-  let tags = []
- if (!isLoading) {
-    unicTags = items.join(',').toLowerCase().split(',');
-   tags = new Set(unicTags)
-   
-}
- 
-  
+  let tags = [];
+  if (!isLoading) {
+    unicTags = items.join(",").toLowerCase().split(",");
+    tags = new Set(unicTags);
+  }
 
   return (
-    <SideBlock title="Тэги">
+    <SideBlock title="Теги">
       <List>
         {(isLoading ? [...Array(5)] : [...tags]).map((name, i) => (
-         
-            <a
-              style={{ textDecoration: "none", color: "black" }}
+          <a
+            style={{ textDecoration: "none", color: "black" }}
             href={`/tags/${name}`}
             key={i}
-            >
-              <ListItem  disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <TagIcon />
-                  </ListItemIcon>
-                  {isLoading ? (
-                    <Skeleton width={100} />
-                  ) : (
-                    <ListItemText primary={name} />
-                  )}
-                </ListItemButton>
-              </ListItem>
-            </a>
+          >
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <TagIcon />
+                </ListItemIcon>
+                {isLoading ? (
+                  <Skeleton width={100} />
+                ) : (
+                  <ListItemText primary={name} />
+                )}
+              </ListItemButton>
+            </ListItem>
+          </a>
         ))}
       </List>
     </SideBlock>
