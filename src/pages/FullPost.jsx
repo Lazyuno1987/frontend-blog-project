@@ -12,7 +12,9 @@ import { fetchComments } from "../redux/slices/posts";
 export const FullPost = () => {
   const [data, setData] = React.useState();
   const [isLoading, setIsLoading] = React.useState(true);
-  const comments = useSelector(state=>state.posts.comments.items)
+   const comments = useSelector(state=>state.posts.comments.items)
+    
+
   const { id } = useParams();
   const dispatch = useDispatch()
  
@@ -28,8 +30,9 @@ export const FullPost = () => {
       });
     
     dispatch(fetchComments(id))
-  }, [id]);
+  }, [id, dispatch]);
 
+  
 
 const isCommentsLoading = comments.status === "loading";
 
@@ -46,7 +49,7 @@ const isCommentsLoading = comments.status === "loading";
         user={data.user}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
-        commentsCount={comments?.length}
+        commentsCount={data.comment.length}
         tags={data.tags}
         isFullPost
       >

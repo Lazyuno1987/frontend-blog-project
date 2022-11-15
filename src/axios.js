@@ -1,11 +1,8 @@
 import axios from "axios";
-// import * as dotenv from "dotenv";
 
-// dotenv.config();
-// const {REACT_API_API_URL}=process.env
 const instance = axios.create({
       baseURL:"https://backend-blog-project-laziun.herokuapp.com/"
-     //baseURL:'http://localhost:4444/'
+    //  baseURL:'http://localhost:4444/'
     
 })
 

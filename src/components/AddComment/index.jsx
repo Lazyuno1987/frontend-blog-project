@@ -8,11 +8,11 @@ import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "../../axios";
-import { useState } from "react";
+
 import { fetchComments } from "../../redux/slices/posts";
 
 export const Index = () => {
-  const [comments, setComments] = useState("");
+
   const { userData } = useSelector((state) => state.auth.data);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -28,13 +28,12 @@ export const Index = () => {
   });
   const onSubmit = async (value) => {
     if (value) {
-      axios.post(`/posts/${id}`, value).then((res) => {
-        setComments(res);
-      });
-    }
-
-    dispatch(fetchComments(id));
-  };
+       axios.post(`/posts/${id}`, value)
+      
+    };
+    dispatch(fetchComments(id))
+    };
+ 
 
   return (
     <>

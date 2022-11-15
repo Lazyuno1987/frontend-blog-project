@@ -21,8 +21,8 @@ export const Popular = () => {
   useEffect(() => {
       dispatch(fetchTags());
      dispatch(fetchPosts())  
-      axios.get(`/comment`)
-       .then((res) => {
+    axios.get(`/comment`)
+      .then((res) => {
         setComments(res.data)
        
       })
@@ -30,6 +30,7 @@ export const Popular = () => {
        
     alert("Є помилка при загрузці коментарів")
       });
+      
     },[dispatch])
    
 
@@ -45,12 +46,7 @@ return newPost
   }
     popularPosts()
      
-    function commentsCountLength(objId) {
-    const countCom = comments.filter(el => el.post._id===objId)
-    
-    return countCom.length
-  }
-  
+ 
    
     return (
     
@@ -67,7 +63,7 @@ return newPost
               user={obj.user}
               createdAt={obj.createdAt}
               viewsCount={obj.viewsCount}
-              commentsCount={commentsCountLength(obj._id)}
+              commentsCount={obj.comment.length}
                 tags={obj.tags}
                   isEditable={data?.userData?._id === obj?.user?._id}
             />

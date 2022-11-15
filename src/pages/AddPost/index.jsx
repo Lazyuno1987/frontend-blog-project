@@ -24,6 +24,7 @@ export const AddPost = () => {
   const navigate = useNavigate();
   const isEditing = Boolean(id)
 console.log(isLoading)
+  
   const handleChangeFile = async (event) => {
     try {
       const formData = new FormData();

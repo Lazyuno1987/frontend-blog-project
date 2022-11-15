@@ -34,6 +34,7 @@ export const NewPost = () => {
    
   }, [dispatch]);
 
+ 
 
    
 
@@ -46,11 +47,6 @@ export const NewPost = () => {
     })}
  reverseArr()
      
-    function commentsCountLength(objId) {
-    const countCom = comments.filter(el => el.post._id===objId)
-    
-    return countCom.length
-  }
 
  
     return (
@@ -67,7 +63,7 @@ export const NewPost = () => {
               user={obj.user}
               createdAt={obj.createdAt}
               viewsCount={obj.viewsCount}
-              commentsCount={commentsCountLength(obj._id)}
+              commentsCount={obj.comment.length}
                 tags={obj.tags}
                  isEditable={data?.userData?._id === obj?.user?._id}
             />
