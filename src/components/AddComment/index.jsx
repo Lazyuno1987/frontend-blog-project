@@ -32,6 +32,7 @@ export const Index = () => {
       
     };
     dispatch(fetchComments(id))
+   
     };
  
 

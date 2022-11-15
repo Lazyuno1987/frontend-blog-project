@@ -13,7 +13,8 @@ export const FullPost = () => {
   const [data, setData] = React.useState();
   const [isLoading, setIsLoading] = React.useState(true);
    const comments = useSelector(state=>state.posts.comments.items)
-    
+  const user = useSelector(state => state.auth.data)
+ 
 
   const { id } = useParams();
   const dispatch = useDispatch()
@@ -62,7 +63,7 @@ const isCommentsLoading = comments.status === "loading";
           items={comments}
           isLoading={isLoading}
         >
-          <Index />
+          {user!==null ?  <Index /> : <p>" Якщо ви хочете побачити коментарі будь-ласка зареєструйтесь"</p>}
         </CommentsBlock>))}
       
     </>
