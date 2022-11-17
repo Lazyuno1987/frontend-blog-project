@@ -134,7 +134,7 @@ console.log(isLoading)
           </Button>
           <img
             className={styles.image}
-            src={`https://backend-blog-project-laziun.herokuapp.com/${imageUrl}`}
+            src={`https://backend-blog-project-production.up.railway.app/${imageUrl}`}
             alt="Uploaded"
           />
         </>

@@ -59,7 +59,7 @@ const dispatch = useDispatch()
       {imageUrl && (
         <img
           className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
-          src={`https://backend-blog-project-laziun.herokuapp.com/${imageUrl}`}
+          src={`https://backend-blog-project-production.up.railway.app/${imageUrl}`}
           alt={title}
         />
       )}

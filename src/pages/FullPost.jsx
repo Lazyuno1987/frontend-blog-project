@@ -63,7 +63,7 @@ const isCommentsLoading = comments.status === "loading";
           items={comments}
           isLoading={isLoading}
         >
-          {user!==null ?  <Index /> : <p>" Якщо ви хочете побачити коментарі будь-ласка зареєструйтесь"</p>}
+          {user!==null ?  <Index /> : <p> Якщо ви хочете залишити коментар, будь-ласка зареєструйтесь </p>}
         </CommentsBlock>))}
       
     </>
