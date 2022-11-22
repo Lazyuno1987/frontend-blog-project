@@ -59,7 +59,7 @@ const dispatch = useDispatch()
       {imageUrl && (
         <img
           className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
-          src={`https://backend-blog-project-production.up.railway.app/${imageUrl}`}
+          src={`https://backend-blog-project-render.onrender.com/${imageUrl}`}
           alt={title}
         />
       )}

@@ -134,7 +134,7 @@ console.log(isLoading)
           </Button>
           <img
             className={styles.image}
-            src={`https://backend-blog-project-production.up.railway.app/${imageUrl}`}
+            src={`https://backend-blog-project-render.onrender.com/${imageUrl}`}
             alt="Uploaded"
           />
         </>
